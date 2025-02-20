@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoutaWeb</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b, #1e90ff);
+            color: white;
+            text-align: center;
+            animation: backgroundMove 5s infinite alternate;
+        }
+        @keyframes backgroundMove {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 320px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .user-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: url('https://cdn-icons-png.flaticon.com/512/847/847969.png') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            color: white;
+            background: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            animation: bounce 1s infinite alternate;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background: #333;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        #error {
+            color: yellow;
+            display: none;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-icon"></div>
+        <form onsubmit="return validateLogin()">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p id="error">Invalid credentials, try again.</p>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            
+            if (username === "admin" && password === "password") {
+                alert("Login successful!");
+                return true;
+            } else {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
